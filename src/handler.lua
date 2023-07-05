@@ -19,6 +19,7 @@ end
 -- end
 
 function AuthRequestHandler:access(conf)
+  kong.log.notice("kong-auth-request access")
   -- AuthRequestHandler.super.access(self)
   access.execute(conf)
 end
