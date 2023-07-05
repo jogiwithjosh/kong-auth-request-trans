@@ -1,16 +1,25 @@
-local BasePlugin = require "kong.plugins.base_plugin"
+-- local BasePlugin = require "kong.plugins.base_plugin"
 local access = require "kong.plugins.kong-auth-request.access"
 
-local AuthRequestHandler = BasePlugin:extend()
+local AuthRequestHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 900,
+}
 
-AuthRequestHandler.PRIORITY = 900
-
-function AuthRequestHandler:new()
-  AuthRequestHandler.super.new(self, "kong-auth-request")
+function AuthRequestHandler:init_worker()
+  kong.log.notice("kong-auth-request init")
 end
 
+-- local AuthRequestHandler = BasePlugin:extend()
+
+-- AuthRequestHandler.PRIORITY = 900
+
+-- function AuthRequestHandler:new()
+--   AuthRequestHandler.super.new(self, "kong-auth-request")
+-- end
+
 function AuthRequestHandler:access(conf)
-  AuthRequestHandler.super.access(self)
+  -- AuthRequestHandler.super.access(self)
   access.execute(conf)
 end
 
