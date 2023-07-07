@@ -41,7 +41,9 @@ end
 function _M.new_auth_request(origin_request_headers_to_forward_to_auth, keepalive_timeout)
     local headers = {
         charset = "utf-8",
-        ["content-type"] = "application/json"
+        ["content-type"] = "application/json",
+        ["x-original-method"] = kong.request.get_method(),
+        ["x-original-url"] = kong.request.get_path()
     }
     for _, name in ipairs(origin_request_headers_to_forward_to_auth) do
         local header_val = kong.request.get_header(name)
