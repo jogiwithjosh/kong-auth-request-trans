@@ -1,6 +1,9 @@
 local http = require "resty.http"
 -- local cjson = require "cjson.safe"
 
+local ngx = ngx
+local ngx_var = ngx.var
+
 local _M = {}
 
 function _M.execute(conf)
@@ -39,11 +42,15 @@ function _M.execute(conf)
 end
 
 function _M.new_auth_request(origin_request_headers_to_forward_to_auth, keepalive_timeout)
+    -- may have been changed by the request transformer plugin
+    local upstream_uri = ngx_var.upstream_uri or kong.request.get_path()
+
     local headers = {
         charset = "utf-8",
         ["content-type"] = "application/json",
         ["x-original-method"] = kong.request.get_method(),
-        ["x-original-url"] = kong.request.get_path()
+        ["x-raw-original-url"] = kong.request.get_path(),
+        ["x-original-url"] = upstream_uri
     }
     for _, name in ipairs(origin_request_headers_to_forward_to_auth) do
         local header_val = kong.request.get_header(name)
