@@ -38,9 +38,11 @@ function _M.execute(conf)
     kong.log.info("conf.auth_response_headers_to_forward: ", conf.auth_response_headers_to_forward)
     for _, name in ipairs(conf.auth_response_headers_to_forward) do
         kong.log.info("conf.auth_response_headers_to_forward: ", name)
+    end
     kong.log.info("res headers: ", res.headers)
     for _, name in ipairs(res.headers) do
         kong.log.info("res headers: ", name)
+    end
     for _, name in ipairs(conf.auth_response_headers_to_forward) do
         if res.headers[name] then
             kong.service.request.set_header(name, res.headers[name])
