@@ -35,6 +35,7 @@ function _M.execute(conf)
     end
 
     for _, name in ipairs(conf.auth_response_headers_to_forward) do
+        kong.log.err(name)
         if res.headers[name] then
             kong.service.request.set_header(name, res.headers[name])
         end

@@ -1,7 +1,7 @@
 local typedefs = require "kong.db.schema.typedefs"
 
 return {
-  name = "kong-auth-request",
+  name = "kong-auth-request-trans",
   fields = {
     {
       -- this plugin will only be applied to Services or Routes

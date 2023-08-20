@@ -1,5 +1,5 @@
 -- local BasePlugin = require "kong.plugins.base_plugin"
-local access = require "kong.plugins.kong-auth-request.access"
+local access = require "kong.plugins.kong-auth-request-trans.access"
 
 local AuthRequestHandler = {
   VERSION  = "1.0.0",
@@ -7,7 +7,7 @@ local AuthRequestHandler = {
 }
 
 function AuthRequestHandler:init_worker()
-  kong.log.notice("kong-auth-request init")
+  kong.log.notice("kong-auth-request-trans init")
 end
 
 -- local AuthRequestHandler = BasePlugin:extend()
@@ -19,7 +19,7 @@ end
 -- end
 
 function AuthRequestHandler:access(conf)
-  kong.log.notice("kong-auth-request access")
+  kong.log.notice("kong-auth-request-trans access")
   -- AuthRequestHandler.super.access(self)
   access.execute(conf)
 end

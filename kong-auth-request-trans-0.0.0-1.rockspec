@@ -1,4 +1,4 @@
-package = "kong-auth-request"
+package = "kong-auth-request-trans"
 
 version = "0.0.0-1"
 
