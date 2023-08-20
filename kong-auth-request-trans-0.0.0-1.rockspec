@@ -1,12 +1,12 @@
 package = "kong-auth-request-trans"
 
-version = "0.0.0-1"
+version = "0.0.0-2"
 
 supported_platforms = {"linux", "macosx"}
 
 source = {
   url = "git://github.com/jogiwithjosh/kong-auth-request-trans",
-  tag = "0.0.1"
+  tag = "0.0.2"
 }
 
 description = {
